@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            PDF Malware Analyzer
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="/">Home</a>
+            </li>
+
+            <li>
+                <a href="#">History</a>
+            </li>
+
+            <li>
+                <a href="#">About</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- Main Content -->
+
+    <main>
+
+        <section class="hero">
+
+            <h1>Analysis Results</h1>
+
+            <p>
+                Security analysis results for the uploaded PDF.
+            </p>
+
+        </section>
+
+
+        <!-- File Information -->
+
+        <section class="upload">
+
+            <h2>File Information</h2>
+
+            <p>
+                <strong>File:</strong>
+                {{ filename }}
+            </p>
+
+            <p>
+                <strong>MD5:</strong>
+                {{ md5 }}
+            </p>
+
+            <p>
+                <strong>SHA-256:</strong>
+                {{ sha256 }}
+            </p>
+
+        </section>
+
+
+        <!-- Risk -->
+
+        <section class="upload">
+
+            <h2>Risk Assessment</h2>
+
+            <h1>
+                {{ score }} / 100
+            </h1>
+
+            <h2>
+                Severity: {{ severity }}
+            </h2>
+
+        </section>
+
+
+        <!-- Metadata -->
+
+        <section class="upload">
+
+            <h2>Metadata</h2>
+
+            {% if metadata %}
+
+                {% for key, value in metadata.items() %}
+
+                    <p>
+                        <strong>{{ key }}:</strong>
+                        {{ value }}
+                    </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No metadata found.</p>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Suspicious Keywords -->
+
+        <section class="upload">
+
+            <h2>Suspicious Keywords</h2>
+
+            {% if keywords %}
+
+                <ul>
+
+                    {% for keyword in keywords %}
+
+                        <li>{{ keyword }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% else %}
+
+                <p>No suspicious keywords detected.</p>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- URLs -->
+
+        <section class="upload">
+
+            <h2>URLs</h2>
+
+            {% if urls %}
+
+                {% for url in urls %}
+
+                    <p>{{ url }}</p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No URLs detected.</p>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- IP Addresses -->
+
+        <section class="upload">
+
+            <h2>IP Addresses</h2>
+
+            {% if ips %}
+
+                {% for ip in ips %}
+
+                    <p>{{ ip }}</p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No IP addresses detected.</p>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Back Button -->
+
+        <section style="text-align:center; margin:40px;">
+
+            <a href="/">
+                <button>Analyze Another PDF</button>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            PDF Malware Analysis Toolkit © 2026
+        </p>
+
+        <p>
+            Created by Nilay N.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
